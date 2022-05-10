@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(43, 49, 55);
+  color: white;
+  font-family: Arial , sans-serif;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.cssTabela {
+  margin: auto;
+  text-align: center;
+  width: 95%;
+}
+
+.ImageStarWars {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
