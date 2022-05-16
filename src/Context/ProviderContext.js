@@ -5,6 +5,11 @@ import getApi from '../Services/API';
 
 function ProviderContext({ children }) {
   const [info, setInfo] = useState([]);
+  const [filterByName, setNameFilter] = useState(
+    {
+      name: '',
+    },
+  );
 
   const func = async () => {
     const saida = await getApi();
@@ -15,8 +20,15 @@ function ProviderContext({ children }) {
     func();
   }, []);
 
+  const state = {
+    info,
+    filterByName,
+    setNameFilter,
+
+  };
+
   return (
-    <myContext.Provider value={ info }>
+    <myContext.Provider value={ state }>
       { children }
     </myContext.Provider>
   );

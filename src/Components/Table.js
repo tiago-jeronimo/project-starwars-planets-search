@@ -3,8 +3,8 @@ import myContext from '../Context/myContext';
 import styles from './styles.module.css';
 
 function Table() {
-  const state = useContext(myContext);
-  console.log(state[0]);
+  const { info, filterByName: { name } } = useContext(myContext);
+  console.log(name);
   return (
     <table className={ styles.cssTabela }>
       <thead>
@@ -25,7 +25,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { state.map((element) => (
+        {info.length > 0 && info.filter((e) => e.name.includes(name)).map((element) => (
           <tr key={ element.name }>
             <td>{ element.name }</td>
             <td>{ element.rotation_period }</td>
@@ -45,7 +45,7 @@ function Table() {
             <td>{element.edited}</td>
             <td>{element.url}</td>
           </tr>
-        ))}
+        )) }
       </tbody>
     </table>
   );
