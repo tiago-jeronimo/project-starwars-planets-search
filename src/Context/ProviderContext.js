@@ -11,6 +11,8 @@ function ProviderContext({ children }) {
     },
   );
 
+  const [filterByNumericValues, setNumericValues] = useState([]);
+
   const func = async () => {
     const saida = await getApi();
     setInfo(saida.results);
@@ -24,6 +26,8 @@ function ProviderContext({ children }) {
     info,
     filterByName,
     setNameFilter,
+    filterByNumericValues,
+    setNumericValues,
 
   };
 
