@@ -10,6 +10,19 @@ function NumericalPhilters() {
     value: '0',
   });
 
+  const colunas = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+  const colunasFiltradas = () => {
+    const filterColunas = filterByNumericValues.map((el) => el.column);
+    const filtro = colunas.filter((ele) => !filterColunas.includes(ele));
+    return filtro;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'column') {
@@ -17,29 +30,26 @@ function NumericalPhilters() {
         ...ObjctFilter,
         column: value,
       });
-      console.log(ObjctFilter);
     }
     if (name === 'comparison') {
       setObjctFilter({
         ...ObjctFilter,
         comparison: value,
       });
-      console.log(ObjctFilter);
     }
     if (name === 'number') {
       setObjctFilter({
         ...ObjctFilter,
         value,
       });
-      console.log(ObjctFilter);
     }
   };
 
   const submitValue = (e) => {
     e.preventDefault();
     setNumericValues((prev) => [...prev, ObjctFilter]);
-    console.log(filterByNumericValues);
   };
+
   return (
     <form>
       <label htmlFor="coluna">
@@ -51,11 +61,10 @@ function NumericalPhilters() {
           defaultValue="population"
           data-testid="column-filter"
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          { colunasFiltradas()
+            .map((e, k) => (
+              <option key={ k } value={ e }>{e}</option>
+            ))}
         </select>
       </label>
 
