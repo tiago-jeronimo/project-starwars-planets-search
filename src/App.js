@@ -6,6 +6,7 @@ import StarWars from './Components/StarWars';
 import NameFilter from './Components/NameFilter';
 import NumericalPhilters from './Components/NumericalPhilters';
 import DeletAllFilter from './Components/DeletAllFilter';
+import Order from './Components/Order';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <NameFilter />
       <NumericalPhilters />
       <DeletAllFilter />
+      <Order />
       <Table />
     </ProviderContext>
   );

@@ -3,7 +3,8 @@ import myContext from '../Context/myContext';
 import styles from './styles.module.css';
 
 function Table() {
-  const { filterByNumericValues, info, filterByName: { name } } = useContext(myContext);
+  const { filterByNumericValues, info,
+    filterByName: { name }, validade, comparePlanetas } = useContext(myContext);
 
   const planetsFiltrado = () => {
     const number = 0;
@@ -44,10 +45,10 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { planetsFiltrado()
+        { (validade ? comparePlanetas() : planetsFiltrado())
           .filter((e) => e.name.includes(name)).map((element) => (
             <tr key={ element.name }>
-              <td>{ element.name }</td>
+              <td data-testid="planet-name">{ element.name }</td>
               <td>{ element.rotation_period }</td>
               <td>{ element.orbital_period }</td>
               <td>{ element.diameter }</td>

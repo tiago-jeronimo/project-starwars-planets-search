@@ -103,24 +103,29 @@ function NumericalPhilters() {
           Filtrar
         </button>
       </form>
-      {filterByNumericValues.map((e, k) => (
-        <div key={ k } data-testid="filter">
-          <p key={ k }>
-            {e.column}
-            {' '}
-            {e.comparison}
-            {' '}
-            {e.value}
-            {' '}
-          </p>
-          <button
-            type="button"
-            onClick={ () => removeFilter(k) }
-          >
-            X
-          </button>
-        </div>
-      ))}
+      <fieldset>
+        <legend>
+          Filtros
+        </legend>
+        {filterByNumericValues.map((e, k) => (
+          <div key={ k } data-testid="filter">
+            <p key={ k }>
+              {e.column}
+              {' '}
+              {e.comparison}
+              {' '}
+              {e.value}
+              {' '}
+            </p>
+            <button
+              type="button"
+              onClick={ () => removeFilter(k) }
+            >
+              X
+            </button>
+          </div>
+        ))}
+      </fieldset>
     </div>
   );
 }
