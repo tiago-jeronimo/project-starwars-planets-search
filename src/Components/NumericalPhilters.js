@@ -50,53 +50,78 @@ function NumericalPhilters() {
     setNumericValues((prev) => [...prev, ObjctFilter]);
   };
 
-  return (
-    <form>
-      <label htmlFor="coluna">
-        Coluna:
-        <select
-          name="column"
-          onChange={ handleChange }
-          id="coluna"
-          defaultValue="population"
-          data-testid="column-filter"
-        >
-          { colunasFiltradas()
-            .map((e, k) => (
-              <option key={ k } value={ e }>{e}</option>
-            ))}
-        </select>
-      </label>
+  const removeFilter = (key) => {
+    const filtrados = filterByNumericValues.filter((e, k) => k !== key);
+    setNumericValues([...filtrados]);
+  };
 
-      <label htmlFor="comparison">
-        Operador:
-        <select
-          name="comparison"
+  return (
+    <div>
+      <form>
+        <label htmlFor="coluna">
+          Coluna:
+          <select
+            name="column"
+            onChange={ handleChange }
+            id="coluna"
+            defaultValue="population"
+            data-testid="column-filter"
+          >
+            { colunasFiltradas()
+              .map((e, k) => (
+                <option key={ k } value={ e }>{e}</option>
+              ))}
+          </select>
+        </label>
+
+        <label htmlFor="comparison">
+          Operador:
+          <select
+            name="comparison"
+            onChange={ handleChange }
+            defaultValue="maior que"
+            id="comparison"
+            data-testid="comparison-filter"
+          >
+            <option value="maior que">maior que</option>
+            <option value="igual a">igual a</option>
+            <option value="menor que">menor que</option>
+          </select>
+        </label>
+        <input
+          type="number"
+          name="number"
           onChange={ handleChange }
-          defaultValue="maior que"
-          id="comparison"
-          data-testid="comparison-filter"
+          defaultValue="0"
+          data-testid="value-filter"
+        />
+        <button
+          type="submit"
+          data-testid="button-filter"
+          onClick={ submitValue }
         >
-          <option value="maior que">maior que</option>
-          <option value="igual a">igual a</option>
-          <option value="menor que">menor que</option>
-        </select>
-      </label>
-      <input
-        type="number"
-        name="number"
-        onChange={ handleChange }
-        defaultValue="0"
-        data-testid="value-filter"
-      />
-      <button
-        type="submit"
-        data-testid="button-filter"
-        onClick={ submitValue }
-      >
-        Filtrar
-      </button>
-    </form>
+          Filtrar
+        </button>
+      </form>
+      {filterByNumericValues.map((e, k) => (
+        <div key={ k } data-testid="filter">
+          <p key={ k }>
+            {e.column}
+            {' '}
+            {e.comparison}
+            {' '}
+            {e.value}
+            {' '}
+          </p>
+          <button
+            type="button"
+            onClick={ () => removeFilter(k) }
+          >
+            X
+          </button>
+        </div>
+      ))}
+    </div>
   );
 }
 export default NumericalPhilters;

@@ -5,6 +5,7 @@ import ProviderContext from './Context/ProviderContext';
 import StarWars from './Components/StarWars';
 import NameFilter from './Components/NameFilter';
 import NumericalPhilters from './Components/NumericalPhilters';
+import DeletAllFilter from './Components/DeletAllFilter';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <StarWars />
       <NameFilter />
       <NumericalPhilters />
+      <DeletAllFilter />
       <Table />
     </ProviderContext>
   );
